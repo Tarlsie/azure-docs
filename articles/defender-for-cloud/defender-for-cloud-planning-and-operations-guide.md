@@ -13,7 +13,9 @@ This guide is for information technology (IT) professionals, IT architects, info
 ## Planning guide
 
 This guide provides the background for how Defender for Cloud fits into your organization's security requirements and cloud management model. It's important to understand how different individuals or teams in your organization use the service to meet secure development and operations, monitoring, governance, and incident response needs. The key areas to consider when planning to use Defender for Cloud are:
+<!--- is there a way to list this without using the word "and" at the beginning of this list of operations? is 'and operations' essential? Does development and operations have to go together? If possible I would change to development, operations, monitoring... --->
 
+<!--- Below is the list with capitalizations, I see this fits the style guide, but for consistency why does this list use capitalization but the titles below, for each section, don't use them? --->
 - Security Roles and Access Controls
 - Security Policies and Recommendations
 - Data Collection and Storage
@@ -21,14 +23,14 @@ This guide provides the background for how Defender for Cloud fits into your org
 - Ongoing Security Monitoring
 - Incident Response
 
-In the next section, you'll learn how to plan for each one of those areas and apply those recommendations based on your requirements.
+In the next section, you'll learn how to plan for each one of these areas and apply these recommendations based on your requirements.
 
 > [!NOTE]
-> Read [Defender for Cloud common questions](faq-general.yml) for a list of common questions that can also be useful during the designing and planning phase.
+> Read [Defender for Cloud - General questions](faq-general.yml) for a list of common questions that can be useful during the design and planning phase.
 
 ## Security roles and access controls
 
-Depending on the size and structure of your organization, multiple individuals and teams may use Defender for Cloud to perform different security-related tasks. In the following diagram, you have an example of fictitious personas and their respective roles and security responsibilities:
+Depending on the size and structure of your organization, multiple individuals and teams may use Defender for Cloud to perform different security-related tasks. In the following diagram, are example of fictitious personas and their respective roles and security responsibilities:
 
 :::image type="content" source="./media/defender-for-cloud-planning-and-operations-guide/defender-for-cloud-planning-and-operations-guide-fig01-new.png" alt-text="Roles.":::
 
@@ -36,11 +38,12 @@ Defender for Cloud enables these individuals to meet these various responsibilit
 
 **Jeff (Workload Owner)**
 
-- Manage a cloud workload and its related resources.
+- Manages a cloud workload and its related resources.
 
 - Responsible for implementing and maintaining protections in accordance with company security policy.
 
 **Ellen (CISO/CIO)**
+<!--- Is Ellen in a higher position that Jeff? From their descriptions I think that she is and so I would either swap her position with Jeff, or Stretch her box across the entire lenght of the image and lower Jeff to be below Ellen. I would also ask why Jeff is colored diffently from the other, this seems to make him appear the most important. And also move Ellen above Jeff in the order of descriptions --->
 
 - Responsible for all aspects of security for the company.
 
@@ -64,17 +67,17 @@ Defender for Cloud enables these individuals to meet these various responsibilit
 
 **Sam (Security Analyst)**
 
-- Investigate attacks.
+- Investigates attacks.
 
-- Work with Cloud Workload Owner to apply remediation.
-
+- Works with Cloud Workload Owner to apply remediation.
+<!--- Azure role-based access control (Azure Role-based access control) The brackets are repeated, I would remove them. Although I note that Role is spelt with a capital in the brackets is that reason enough to repeat it? Is this a sytle guide rule? Either way I suggest removing, it seems there for no reason --->
 Defender for Cloud uses [Azure role-based access control (Azure Role-based access control)](../role-based-access-control/role-assignments-portal.md), which provides [built-in roles](../role-based-access-control/built-in-roles.md) that can be assigned to users, groups, and services in Azure. When a user opens Defender for Cloud, they only see information related to resources they have access to. Which means the user is assigned the role of Owner, Contributor, or Reader to the subscription or resource group that a resource belongs to. In addition to these roles, there are two roles specific to Defender for Cloud:
 
-- **Security reader**: a user that belongs to this role is able to view only Defender for Cloud configurations, which include recommendations, alerts, policy, and health, but it won't be able to make changes.
+- **Security reader**: a user that belongs to this role is able to view Defender for Cloud configurations only, which include recommendations, alerts, policy, and health, but won't be able to make changes.
 
-- **Security admin**: same as security reader but it can also update the security policy, dismiss recommendations and alerts.
+- **Security admin**: same as security reader but can also update the security policy, dismiss recommendations and alerts.
 
-The personas explained in the previous diagram need these Azure Role-based access control roles:
+The personas explained in the previous diagram need the following Azure Role-based access control roles:
 
 **Jeff (Workload Owner)**
 
@@ -87,18 +90,19 @@ The personas explained in the previous diagram need these Azure Role-based acces
 **David (IT Security)**
 
 - Subscription Owner/Contributor or Security Admin.
+- <!--- The previous roles are simply listed per persona. In the following personas a description of the purpose of the role is also given. I am removing them to maintain consistency.  --->
 
 **Judy (Security Operations)**
 
-- Subscription Reader or Security Reader to view alerts.
+- Subscription Reader or Security Reader.
 
-- Subscription Owner/Contributor or Security Admin required to dismiss alerts.
+- Subscription Owner/Contributor or Security Admin.
 
 **Sam (Security Analyst)**
 
-- Subscription Reader to view alerts.
+- Subscription Reader.
 
-- Subscription Owner/Contributor required to dismiss alerts.
+- Subscription Owner/Contributor.
 
 - Access to the workspace may be required.
 
@@ -106,9 +110,9 @@ Some other important information to consider:
 
 - Only subscription Owners/Contributors and Security Admins can edit a security policy.
 
-- Only subscription and resource group Owners and Contributors can apply security recommendations for a resource.
+- Only subscription and resource group Owners/Contributors can apply security recommendations for a resource.
 
-When planning access control using Azure Role-based access control for Defender for Cloud, make sure you understand who in your organization needs access to Defender for Cloud the tasks they'll perform. Then you can configure Azure Role-based access control properly.
+When planning access control using Azure Role-based access control for Defender for Cloud, make sure you understand who in your organization needs access to Defender for Cloud for the tasks they'll perform. Then you can configure Azure Role-based access control properly.
 
 > [!NOTE]
 > We recommend that you assign the least permissive role needed for users to complete their tasks. For example, users who only need to view information about the security state of resources but not take action, such as applying recommendations or editing policies, should be assigned the Reader role.
@@ -124,17 +128,19 @@ Defenders for Cloud policies contain the following components:
 - [Security policy](tutorial-security-policy.md): an [Azure Policy](../governance/policy/overview.md) that determines which controls are monitored and recommended by Defender for Cloud. You can also use Azure Policy to create new definitions, define more policies, and assign policies across management groups.
 
 - [Email notifications](configure-email-notifications.md): security contacts and notification settings.
-- [Pricing tier](defender-for-cloud-introduction.md#protect-cloud-workloads): with or without Microsoft Defender for Cloud's Defender plans, which determine which Defender for Cloud features are available for resources in scope (can be specified for subscriptions and workspaces using the API).
-
+<!--- - [Pricing tier](defender-for-cloud-introduction.md#protect-cloud-workloads): with or without Defender for Cloud's Defender plans, which determine which Defender for Cloud features are available for resources in scope (can be specified for subscriptions and workspaces using the API).
+- This last item is very confusing. I would imagine a Pricing Tier would lead me to a page with details of different pricings and the associated features. The table linked doesnt focus on that point. Maybe the title here should be Defender Plans instead of Pricing tier?  Secondly, I also don't understand the description either, if I have a tier without the Defender plan then do i have any resources at all? Could this possibly mean that you are shown which plans and features are available for you and which APIs can be specified? I would ask for calrity from an SME on this item. I am removing it until I received further clarification.  --->
+<!--- I am removing this note. It seems unconnected to the section and a slight distraction. The section is about various policies for Defender for Cloud, this is discussing assigning an emergency contact which is not mentioned at all in the section. 
 > [!NOTE]
-> Specifying a security contact ensures that Azure can reach the right person in your organization if a security incident occurs. Read [Provide security contact details in Defender for Cloud](configure-email-notifications.md) for more information on how to enable this recommendation.
+> Specifying a security contact ensures that Azure can reach the right person in your organization if a security incident occurs. Read [Provide security contact details in Defender for Cloud](configure-email-notifications.md) for more information on how to enable this recommendation. --->
 
-### Security policies definitions and recommendations
+### Security policy definitions and recommendations
 
 Defender for Cloud automatically creates a default security policy for each of your Azure subscriptions. You can edit the policy in Defender for Cloud or use Azure Policy to create new definitions, define more policies, and assign policies across management groups. Management groups can represent the entire organization or a business unit within the organization. You can monitor policy compliance across these management groups.
 
 Before configuring security policies, review each of the [security recommendations](review-security-recommendations.md):
-
+<!--- I don't understand the link used above, and how it connects to the list below? WRiting review each of the security recommendations gives me the expectation of an easy and obvious list of recommendations to check, that is not the case in the page linked to. Am I supposed to go through that page now before moving on? As it is outside the limnits of this exercise I am not doing that. Are these items below supposed to be discussed after going through the security recommendations? If so, I think I would write: Review the security recommendations, go to [security recommendations](review-security-recommendations.md). 
+Then configure your security policies and consider: --->
 - See if these policies are appropriate for your various subscriptions and resource groups.
 
 - Understand what actions address the security recommendations.
@@ -144,7 +150,7 @@ Before configuring security policies, review each of the [security recommendatio
 ## Data collection and storage
 
 Defender for Cloud uses the Log Analytics agent and the Azure Monitor Agent to collect security data from your virtual machines. [Data collected](monitoring-components.md) from this agent is stored in your Log Analytics workspaces.
-
+<!--- Should the link be directly to the information on the Log Analytics itself not the entire page? https://learn.microsoft.com/en-us/azure/defender-for-cloud/monitoring-components#log-analytics-agent --->
 ### Agent
 
 When automatic provisioning is enabled in the security policy, the [data collection agent](monitoring-components.md) is installed on all supported Azure VMs and any new supported VMs that are created. If the VM or computer already has the Log Analytics agent installed, Defender for Cloud uses the current installed agent. The agent's process is designed to be non-invasive and have minimal effect on VM performance.
@@ -152,7 +158,8 @@ When automatic provisioning is enabled in the security policy, the [data collect
 If at some point you want to disable Data Collection, you can turn it off in the security policy. However, because the Log Analytics agent may be used by other Azure management and monitoring services, the agent won't be uninstalled automatically when you turn off data collection in Defender for Cloud. You can manually uninstall the agent if needed.
 
 > [!NOTE]
-> To find a list of supported VMs, read the [Defender for Cloud common questions](faq-vms.yml).
+> To find a list of supported VMs, read the [Defender for Cloud common questions about Virtual Machines](faq-vms.yml).
+<!--- I find the differences in titles, headings and menu titles confusing. This is a case in point. The link here was given as Defender for Cloud common questions. The titles of the page the link goes to is Common questions about vitural machines - why wasnt this title used in the text for the link in the article? The Tab title on the browser is Common questions - Virtual Machines (VM) Here Virtual Machines is capitalized and then has an abbreviation in brackets. Finally, in the side bar menu the title is Common questions about Azure Virtual Machines -  with Azure added, capitalized and no brackets. Personally i always thought that the correct way to write this is Virtual Machines capitalized, and that is what I have added above. But I have seen similar differences between the links in this document and the actual page title when the linked page opens. I would suggest reviewing this, not just for internal consistency but also as a reader it is unclear why I am going to another page and what / how much information here is really relevant. --->
 
 ### Workspace
 
